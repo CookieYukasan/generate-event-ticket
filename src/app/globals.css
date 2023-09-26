@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.bg-hero-section {
+  background: linear-gradient(
+      0deg,
+      rgba(3, 2, 10, 0.65) 0%,
+      rgba(3, 2, 10, 0.65) 100%
+    ),
+    url("/images/bg-hero-section.png");
+  background-size: cover;
+}
+
+.bg-ticket-card {
+  background-image: url("/images/bg-ticket-card.svg");
+  background-size: cover;
+}

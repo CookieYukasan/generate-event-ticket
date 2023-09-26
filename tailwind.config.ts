@@ -8,7 +8,7 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      backgroundColor: {
+      backgroundImage: {
         degrade:
           "linear-gradient(90deg, #DEE0FC 0%, #996DFF 50%, #BC9FFF 100%)",
       },
@@ -27,6 +27,10 @@ const config: Config = {
         danger: {
           DEFAULT: "#FF8F8F",
         },
+      },
+      fontFamily: {
+        sans: ["var(--font-roboto)", "sans-serif"],
+        spaceGrotesk: ["var(--font-spaceGrotesk)", "sans-serif"],
       },
     },
   },
