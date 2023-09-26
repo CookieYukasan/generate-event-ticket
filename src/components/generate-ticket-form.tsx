@@ -1,15 +1,18 @@
 "use client";
 
 import { useTicketStore } from "@/stores/useTicketStore";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import { Spinner } from "./spinner";
 
 export function GenerateTicketForm() {
   const inputRef = useRef<HTMLInputElement | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
   const { setUser } = useTicketStore();
 
   async function handleSubmit(e: any) {
     e.preventDefault();
-    if (!inputRef?.current?.value) return;
+    if (!inputRef?.current?.value || isLoading) return;
+    setIsLoading(true);
 
     const response = await fetch(
       `https://api.github.com/users/${inputRef.current.value}`
@@ -23,6 +26,7 @@ export function GenerateTicketForm() {
       name: data.name,
       image: data.avatar_url,
     });
+    setIsLoading(false);
   }
 
   return (
@@ -51,8 +55,9 @@ export function GenerateTicketForm() {
 
       <button
         type="submit"
-        className="font-bold text-sm uppercase w-full bg-purple-normal py-[22px] font-sans text-white"
+        className="flex items-center justify-center font-bold text-sm uppercase w-full bg-purple-normal py-[22px] font-sans text-white"
       >
+        {isLoading && <Spinner />}
         Gerar meu ticket
       </button>
     </form>
